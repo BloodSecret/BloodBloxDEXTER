@@ -1,6 +1,6 @@
 repeat task.wait() until game:IsLoaded()
 
-local GuiParent = (gethui and gethui()) or (get_hidden_gui and get_hidden_gui()) or (pcall(function() return game:GetService("CoreGui") end) and game:GetService("CoreGui")) or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local GuiParent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
 if GuiParent:FindFirstChild("BloodyBloxUI") then
     GuiParent.BloodyBloxUI:Destroy()
