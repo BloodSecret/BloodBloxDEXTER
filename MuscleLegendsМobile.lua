@@ -1,5 +1,14 @@
 repeat task.wait() until game:IsLoaded()
 
+pcall(function()
+    local logService = game:GetService("LogService")
+    logService.MessageOut:Connect(function(message, messageType)
+        if message:find("CoreGui") and message:find("Malformed string") then
+            return
+        end
+    end)
+end)
+
 local GuiParent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
 if GuiParent:FindFirstChild("BloodyBloxUI") then
