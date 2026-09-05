@@ -1,13 +1,21 @@
-repeat task.wait() until game:IsLoaded()
-
 pcall(function()
-    local logService = game:GetService("LogService")
-    logService.MessageOut:Connect(function(message, messageType)
-        if message:find("CoreGui") and message:find("Malformed string") then
-            return
+    local coreGui = game:GetService("CoreGui")
+    local robloxGui = coreGui:FindFirstChild("RobloxGui")
+    if robloxGui then
+        local modules = robloxGui:FindFirstChild("Modules")
+        if modules then
+            local common = modules:FindFirstChild("Common")
+            if common then
+                local locales = common:FindFirstChild("Locales")
+                if locales then
+                    locales:Destroy()
+                end
+            end
         end
-    end)
+    end
 end)
+
+repeat task.wait() until game:IsLoaded()
 
 local GuiParent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
